@@ -1,7 +1,4 @@
-# cryptocurrencies_app
-
-A cryptocurrency Prices App
-
+# Cryptocurrencies App
 
 Resources 
 
