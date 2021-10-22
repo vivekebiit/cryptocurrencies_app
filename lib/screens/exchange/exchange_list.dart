@@ -1,18 +1,19 @@
-import 'package:cryptocurrencies_app/model/coin_info.dart';
+import 'package:cryptocurrencies_app/model/exchange_info.dart';
 import 'package:cryptocurrencies_app/network/end_points.dart';
-import 'package:cryptocurrencies_app/screens/coin_details.dart';
-import 'package:cryptocurrencies_app/screens/components/coin_info_list.dart';
+import 'package:cryptocurrencies_app/screens/components/exchabge_info_list.dart';
+import 'package:cryptocurrencies_app/screens/exchange/exchange_details.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class ExchangeListScreen extends StatefulWidget {
+  const ExchangeListScreen({Key? key}) : super(key: key);
+  static const String routeName = '"/exchange_list_info"';
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _ExchangeListScreenState createState() => _ExchangeListScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  List<CoinInfo> coinInfoList = [];
+class _ExchangeListScreenState extends State<ExchangeListScreen> {
+  List<ExchangeInfo> coinInfoList = [];
   bool _isLoading = true;
 
   @override
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cryptocurrencies'),
+        title: const Text('Exchange List'),
       ),
       body: Container(
         color: Colors.white,
@@ -54,12 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    CoinDetails(coinInfo: coinInfoList[index]),
+                                builder: (context) => ExchangeDetailsScreen(
+                                    exchangeInfo: coinInfoList[index]),
                               ),
                             );
                           },
-                          child: CoinInfoRowItem(
+                          child: ExchangeInfoRowItem(
                             info: coinInfoList[index],
                           ));
                     },
@@ -76,12 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> getAllCryptocurrenciesIds() async {
     final result =
-        await EndPointAPI().getAllCryptocurrenciesIds() as Map<String, dynamic>;
+        await EndPointAPI().getAllExchangesIds() as Map<String, dynamic>;
 
     if (result['status']['error_code'] == 0) {
-      print(result['status']['timestamp']);
       List responseJson = result['data'];
-      coinInfoList = responseJson.map((m) => CoinInfo.fromJson(m)).toList();
+      coinInfoList = responseJson.map((m) => ExchangeInfo.fromJson(m)).toList();
     }
   }
 }

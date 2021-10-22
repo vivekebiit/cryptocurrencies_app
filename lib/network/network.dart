@@ -43,13 +43,12 @@ class Network {
 
   Future getWebService() async {
     debugPrint('URL: $url');
-    String token = '';
 
     final response = await http.get(
       Uri.parse(url),
       headers: {
         'Content-type': 'application/json',
-        'X-CMC_PRO_API_KEY': '',
+        'X-CMC_PRO_API_KEY': 'de67d429-ebfb-4464-b96c-6b59413f79d8',
       },
     );
 

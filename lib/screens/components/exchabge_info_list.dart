@@ -1,10 +1,10 @@
-import 'package:cryptocurrencies_app/model/coin_info.dart';
+import 'package:cryptocurrencies_app/model/exchange_info.dart';
 import 'package:flutter/material.dart';
 
-class CoinInfoRowItem extends StatelessWidget {
-  final CoinInfo info;
+class ExchangeInfoRowItem extends StatelessWidget {
+  final ExchangeInfo info;
 
-  const CoinInfoRowItem({Key? key, required this.info}) : super(key: key);
+  const ExchangeInfoRowItem({Key? key, required this.info}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class CoinInfoRowItem extends StatelessWidget {
                 child: FadeInImage(
                   placeholder: const AssetImage('placeholder.png'),
                   image: NetworkImage(
-                      'https://s2.coinmarketcap.com/static/img/coins/64x64/'
+                      'https://s2.coinmarketcap.com/static/img/exchanges/64x64/'
                       '${info.id}'
                       ".png"),
                   fit: BoxFit.contain,
@@ -42,26 +42,6 @@ class CoinInfoRowItem extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4, right: 4),
-                        child: Text(
-                          'Rank: ${info.rank.toString()}',
-                          style:
-                              const TextStyle(color: Colors.grey, fontSize: 12),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: Text(
-                          info.symbol,
-                          style:
-                              const TextStyle(color: Colors.grey, fontSize: 12),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),
